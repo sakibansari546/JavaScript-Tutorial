@@ -255,20 +255,27 @@ console.log('DOM Events In Js');
 // Practice set //
 // ============ //
 
-let inp = document.querySelector('input');
+// let inp = document.querySelector('input');
 
-inp.addEventListener('mouseout', () => {
-    console.log('Mouse');
-    console.dir(inp);
-});
+// inp.addEventListener('mouseout', () => {
+//     console.log('Mouse');
+//     console.dir(inp);
+// });
 
-inp.addEventListener('keypress', () => {
-    console.log('Mouse');
-    console.dir(inp.value);
-});
+// inp.addEventListener('keypress', () => {
+//     console.log('Mouse');
+//     console.dir(inp.value);
+// });
+// inp.addEventListener('load',()=>{
+//     console.log('kbm');
+// })
+// document.addEventListener('scroll', (e) => {
+//     console.dir(window)
+// });
 
-document.addEventListener('scroll', (e) => {
-    console.dir(window.scroll);
-});
+// document.addEventListener('onload', (e) => {
+//     alert("Load");
+// });
+
 
 
