@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simon - Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #simonBoard {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .simonButton {
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all .1s;
+            outline: none;
+        }
+
+        #startButton {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+
+        #message {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+
+        .max-level {
+            text-align: right;
+            margin-top: 0;
+            font-weight: 00;
+        }
+
+        .green {
+            background-color: #6ff474;
+        }
+
+        .red {
+            background-color: rgb(248, 128, 128);
+        }
+
+        .yellow {
+            background-color: hsl(60, 99%, 72%);
+        }
+
+        .blue {
+            background-color: rgb(104, 104, 226);
+        }
+
+        .flash {
+            background-color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="simonBoard">
+        <p class="max-level">Hiest - 0</p>
+        <h2>Simon Game</h2>
+        <div>
+            <button class="green simonButton" id="green"></button>
+            <button class="red simonButton" id="red"></button>
+        </div>
+        <div>
+            <button class="simonButton yellow" id="yellow"></button>
+            <button class="blue simonButton" id="blue"></button>
+        </div>
+
+        <p id="message">Click &#8595; Start Game!</p>
+        <button id="startButton" onclick="">Start Game</button>
+    </div>
+    <script src="/Day 9/Simon Game/script.js"></script>
+</body>
+
+</html>
