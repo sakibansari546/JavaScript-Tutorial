@@ -19,12 +19,9 @@ function displayHighLevel() {
 }
 
 startBtn.addEventListener('click', () => {
-    if (started == false) {
+    if (!started) {
         startGame();
-        started = true;
-        startBtn.innerText = 'reset Game';
-        startBtn.style.backgroundColor = 'red';
-        displayHighLevel();
+
     } else {
         resetGame();
     }
@@ -45,9 +42,18 @@ function resetGame() {
 
 function startGame() {
     userSeq = [];
+    levelUp();
+    randBtn();
+
+    started = true;
+    startBtn.innerText = 'reset Game';
+    startBtn.style.backgroundColor = 'red';
+    displayHighLevel();
+}
+
+function levelUp() {
     level++;
     lvlEl.innerText = `Level - ${level}`;
-    randBtn();
 }
 
 function randBtn() {
@@ -69,13 +75,16 @@ function flashRnadBtn(btn) {
 
 
 function btnPress() {
-    let btn = this;
-    flashRnadBtn(btn);
 
-    userSeq.push(btn.id);
-    // console.log(userSeq);
+    if (started) {
+        let btn = this;
+        flashRnadBtn(btn);
 
-    checkAns(userSeq.length - 1);
+        userSeq.push(btn.id);
+        // console.log(userSeq);
+
+        checkAns(userSeq.length - 1);
+    }
 }
 
 
