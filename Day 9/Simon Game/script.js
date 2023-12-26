@@ -11,6 +11,8 @@ let started = false;
 let level = 0;
 let hiestLevel = 0;
 
+
+
 function displayHighLevel() {
     if (level > hiestLevel) {
         hiestLevel = level
