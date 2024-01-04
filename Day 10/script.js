@@ -12,7 +12,7 @@ console.log('Hello World');
 
 // () => {
 // console.log('Apna Collee');
-// 
+//
 // setTimeout(() > {
 //     console.log('Apna College');
 // }, 2000);
@@ -177,23 +177,23 @@ console.log('Hello World');
 
 
 
-function changeColor(color, delay) {
-    return new Promise((resolve, rject) => {
-        let body = document.querySelector('body')
-        setTimeout(() => {
-            body.style.backgroundColor = color;
-            resolve("color changed!");
-        }, delay);
-    })
-}
+// function changeColor(color, delay) {
+//     return new Promise((resolve, rject) => {
+//         let body = document.querySelector('body')
+//         setTimeout(() => {
+//             body.style.backgroundColor = color;
+//             resolve("color changed!");
+//         }, delay);
+//     })
+// }
 
-changeColor("red", 1000).then(() => {
-    console.log("red completed");
-    return changeColor("blue", 1000)
-}).then(() => {
-    console.log("blue completed");
-    return changeColor("green", 1000)
-}).then(() => {
-    console.log("green completed");
-    return changeColor("yellow", 1000)
-})
+// changeColor("red", 1000).then(() => {
+//     console.log("red completed");
+//     return changeColor("blue", 1000)
+// }).then(() => {
+//     console.log("blue completed");
+//     return changeColor("green", 1000)
+// }).then(() => {
+//     console.log("green completed");
+//     return changeColor("yellow", 1000)
+// })
