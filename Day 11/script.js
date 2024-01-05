@@ -238,14 +238,44 @@ console.log('Hello world');
 // Acios 
 // Sending Hraders
 
-let url = "https://catfact.ninja/fact";
-async function getJoke() {
+// let url = "https://catfact.ninja/fact";
+// async function getJoke() {
+//     try {
+//         const config = { headers: { Accept: "application/json" } }
+//         let res = await axios.get(url, config)
+//         console.log(res.data);
+//     } catch (error) {
+//         console.log(error);
+//     }
+// }
+// getJoke() 
+
+
+
+let url = `http://universities.hipolabs.com/search?name=india&state=`
+
+async function getUniversities(value) {
     try {
-        const config = { headers: { Accept: "application/json" } }
-        let res = await axios.get(url, config)
-        console.log(res.data);
+        let res = await axios.get(url + value);
+        return res;
     } catch (error) {
-        console.log(error);
+        return "Errro" + error
     }
 }
-getJoke() 
+
+let form = document.querySelector('form');
+form.addEventListener('submit', async (e) => {
+    e.preventDefault()
+    let inp = document.querySelector('.input');
+    let res = await getUniversities(inp.value);
+    console.log(res.data);
+    let data = res.data;
+
+    let listContainer = document.querySelector('ul');
+    listContainer.innerText = ''
+    data.forEach(data => {
+        let lists = document.createElement('li');
+        lists.innerText = data.name;
+        listContainer.append(lists);
+    });
+})
