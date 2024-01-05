@@ -115,9 +115,137 @@ console.log('Hello world');
 
 
 // ===================== //
-// TTesting API requesst //
+// Testing API requesst //
 // ===================== //
 // Tools
 
 // • Hoppscoth
 // • Postman
+
+
+// ================== //
+// First API requesst //
+// ================== //
+// using fetch
+
+// const URL = 'https://icanhazdadjoke.com/';
+// let url = "https://catfact.ninja/fact"
+// fetch(url).then((response) => {
+//     console.log(response);
+//     let res = response.json();
+//     return res
+// }).then((data) => {
+//     console.log(data.fact);
+//     return fetch(url);
+// }).then((res) => {
+//     return res.json();
+// }).then((data2) => {
+//     console.log("Data2 : ", data2.fact);
+// }).catch((err) => {
+//     console.log(err);
+// })
+
+
+
+// ============================= //
+// API request using async await //
+// ============================= //
+
+// let url = "https://catfact.ninja/fact";
+// async function getFact() {
+//     try {
+//         let res = await fetch(url);
+//         let data = await res.json();
+//         console.log(data.fact);
+
+//         let res2 = await fetch(url);
+//         let data2 = await res.json();
+//         console.log(data2.fact);
+
+//     } catch (error) {
+//         console.log("Error : ", error);
+//     }
+// }
+
+
+// ===== //
+// Axios //
+// ===== //
+// Library to make HTTP requests
+
+// let url = "https://catfact.ninja/fact";
+
+// async function getFact() {
+//     try {
+//         let res = await axios.get(url);
+//         // let data = await res.json();
+//         console.log(res.data.fact);
+
+//         // let res2 = await fetch(url);
+//         // let data2 = await res.json();
+//         // console.log(data2.fact);
+
+//     } catch (error) {
+//         console.log("Error : ", error);
+//     }
+// }
+
+
+// let catFact = document.getElementById('cat-fact');
+// async function getFact() {
+//     try {
+//         let res = await axios.get(url);
+//         catFact.innerText = res.data.fact
+//         // throw new Error("Error")
+//     } catch (error) {
+//         catFact.innerText = error;
+//     }
+// }
+
+// getFact();
+// let btn = document.querySelector("button")
+
+// btn.addEventListener("click", async () => {
+//     getFact();
+// });
+
+
+
+// let url = 'https://dog.ceo/api/breeds/image/random';
+
+// let img = document.querySelector("img")
+// async function getFact() {
+//     try {
+//         let res = await axios.get(url);
+//         console.log(res);
+//         img.src = res.data.message
+//             ;
+//         // throw new Error("Error")
+//     } catch (error) {
+//         console.log('Error : ', error);
+//         img.parentElement.innerHTML = error
+//     }
+// }
+// getFact()
+// let btn = document.querySelector("button")
+
+// btn.addEventListener("click", async () => {
+//     getFact();
+// });
+
+
+
+// Acios 
+// Sending Hraders
+
+let url = "https://catfact.ninja/fact";
+async function getJoke() {
+    try {
+        const config = { headers: { Accept: "application/json" } }
+        let res = await axios.get(url, config)
+        console.log(res.data);
+    } catch (error) {
+        console.log(error);
+    }
+}
+getJoke() 
