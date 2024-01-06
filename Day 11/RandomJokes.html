@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Joke Generator</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        #joke-container {
+            max-width: 500px;
+            margin: auto;
+            padding: 20px;
+            /* background-color: #fff; */
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        form {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        input {
+            padding: 10px;
+            font-size: 16px;
+            margin-right: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+        }
+
+        #joke-text {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        .loader.active {
+            display: inline-block;
+        }
+
+        .loader {
+            display: none;
+            width: 55px;
+            height: 55px;
+            margin-top: 2rem;
+            border: 5px solid #000000;
+            border-bottom-color: transparent;
+            border-radius: 50%;
+            display: none;
+            box-sizing: border-box;
+            animation: rotation 1s linear infinite;
+        }
+
+        @keyframes rotation {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="joke-container">
+        <h2>Random Joke Generator</h2>
+        <form>
+            <input type="text" id="input" placeholder="eg.. funny, sad, happy">
+            <button>Generate Joke</button>
+        </form>
+        <span class="loader"></span>
+        <div class="jokes-container">
+            <div class="twoPart-jokes">
+                <p class="setup"></p>
+                <p class="delivery"></p>
+            </div>
+            <p id="joke-text">Click the button above to get a random joke!</p>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+    <script>
+
+        let url = "https://v2.jokeapi.dev/joke/Any?";
+        async function getJokes(value) {
+            try {
+                let jokesContainer = document.querySelector('.jokes-container')
+                let loader = document.querySelector('.loader')
+
+                jokesContainer.style.display = 'none';
+                loader.classList.add('active')
+
+                let res = await fetch(url + value);
+                let data = await res.json();
+
+
+                jokesContainer.style.display = 'block';
+                loader.classList.remove('active');
+
+                let twoPartJokesEl = document.querySelector('.twoPart-jokes');
+                let setupEl = document.querySelector('.setup');
+                let deliveryEl = document.querySelector('.delivery');
+
+                let jokeEl = document.querySelector('#joke-text')
+
+                let joke = data.joke
+                console.log(data);
+                if (data.type == "single") {
+                    twoPartJokesEl.style.display = 'none'
+                    jokeEl.style.display = 'block'
+                    jokeEl.innerHTML = joke;
+                }
+                else if (data.type == "twopart") {
+                    twoPartJokesEl.style.display = 'block';
+                    jokeEl.style.display = 'none'
+                    setupEl.innerHTML = `<b>Setup : </b>` + data.setup;
+                    deliveryEl.innerHTML = `<b>Delivery : </b>` + data.delivery;
+                }
+
+            } catch (error) {
+                console.log('Error : ', error);
+                jokesContainer.innerHTML = 'Error : '
+            }
+        }
+
+        let form = document.querySelector('form')
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            let inpValue = document.querySelector('#input').value;
+            getJokes(inpValue);
+        })
+
+    </script>
+
+</body>
+
+</html>
