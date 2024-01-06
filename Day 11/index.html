@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -14,7 +14,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+            /* height: 100vh; */
         }
 
         .cat-fact-container {
@@ -55,15 +55,24 @@
             height: 200px;
             object-fit: cover;
         }
+
+        ul {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 30px;
+        }
     </style>
 </head>
 
 <body>
-    <!-- <div class="cat-fact-container">
+    <div class="cat-fact-container">
         <h1>Cat Fact</h1>
         <p id="cat-fact">Loading...</p>
         <button class="refresh-button" onclick="getNewCatFact()">Get New Fact</button>
-    </div> -->
+    </div>
 
     <div class="cat-fact-container">
         <h1>Get Random Dog Image</h1>
@@ -71,8 +80,98 @@
         <button class="refresh-button" onclick="">Get New Fact</button>
     </div>
 
+
+    <div class="cat-fact-container">
+        <h1>Cheack The Universities</h1>
+        <form action="#">
+            <input type="text" class="input">
+            <button>Search</button>
+        </form>
+        <ul>
+
+        </ul>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
     <script src="/Day 11/script.js"></script>
+</body>
+
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>University Search</h2>
+    <label for="countryDropdown">Select a Country:</label>
+    <select id="countryDropdown" onchange="searchUniversities()">
+        <option value="india">India</option>
+        <!-- Add more countries as needed -->
+    </select>
+
+    <div id="universityList"></div>
+
+    <script>
+        function searchUniversities() {
+            var countryDropdown = document.getElementById("countryDropdown");
+            var selectedCountry = countryDropdown.value;
+            var universityListContainer = document.getElementById("universityList");
+
+            // Clear previous results
+            universityListContainer.innerHTML = "";
+
+            // Perform university search based on the selected country
+            if (selectedCountry === "india") {
+                // Make an API request to get universities in India
+                var apiUrl = "http://universities.hipolabs.com/search?country=india";
+
+                fetch(apiUrl)
+                    .then(response => response.json())
+                    .then(data => {
+                        displayUniversities(data);
+                    })
+                    .catch(error => {
+                        console.error('Error fetching universities:', error);
+                        universityListContainer.innerHTML = "Error fetching data. Please try again later.";
+                    });
+            }
+
+            // Handle the case where no country is selected
+            else {
+                universityListContainer.innerHTML = "Please select a country.";
+            }
+        }
+
+        function displayUniversities(universities) {
+            var universityListContainer = document.getElementById("universityList");
+            var universitiesHTML = "<h3>Universities:</h3><ul>";
+
+            for (var i = 0; i < universities.length; i++) {
+                universitiesHTML += "<li>" + universities[i].name + " - " + universities[i].state + "</li>";
+            }
+
+            universitiesHTML += "</ul>";
+            universityListContainer.innerHTML = universitiesHTML;
+        }
+    </script>
 </body>
 
 </html>
